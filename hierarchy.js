@@ -24,16 +24,19 @@ var hierarchy =
     [ "LoRaWANEvent_t", "struct_lo_ra_w_a_n_event__t.html", null ],
     [ "LoRaWANJoinEvent_t", "struct_lo_ra_w_a_n_join_event__t.html", null ],
     [ "LoRaWANMacCommand_t", "struct_lo_ra_w_a_n_mac_command__t.html", null ],
-    [ "LoRaWANMacCommandQueue_t", "struct_lo_ra_w_a_n_mac_command_queue__t.html", null ],
-    [ "LoRaWANMacSpec_t", "struct_lo_ra_w_a_n_mac_spec__t.html", null ],
     [ "LoRaWANNode", "class_lo_ra_w_a_n_node.html", null ],
+    [ "LR11x0GnssAlmanacStatus_t", "struct_l_r11x0_gnss_almanac_status__t.html", null ],
+    [ "LR11x0GnssAlmanacStatusPart_t", "struct_l_r11x0_gnss_almanac_status_part__t.html", null ],
+    [ "LR11x0GnssPosition_t", "struct_l_r11x0_gnss_position__t.html", null ],
     [ "LR11x0GnssResult_t", "struct_l_r11x0_gnss_result__t.html", null ],
+    [ "LR11x0GnssSatellite_t", "struct_l_r11x0_gnss_satellite__t.html", null ],
     [ "LR11x0VersionInfo_t", "struct_l_r11x0_version_info__t.html", null ],
     [ "LR11x0WifiResult_t", "struct_l_r11x0_wifi_result__t.html", [
       [ "LR11x0WifiResultFull_t", "struct_l_r11x0_wifi_result_full__t.html", [
         [ "LR11x0WifiResultExtended_t", "struct_l_r11x0_wifi_result_extended__t.html", null ]
       ] ]
     ] ],
+    [ "LrFhssRate_t", "struct_lr_fhss_rate__t.html", null ],
     [ "Module", "class_module.html", [
       [ "STM32WLx_Module", "class_s_t_m32_w_lx___module.html", null ]
     ] ],
@@ -87,8 +90,12 @@ var hierarchy =
     ] ],
     [ "RadioLibAES128", "class_radio_lib_a_e_s128.html", null ],
     [ "RadioLibBCH", "class_radio_lib_b_c_h.html", null ],
+    [ "RadioLibConvCode", "class_radio_lib_conv_code.html", null ],
     [ "RadioLibCRC", "class_radio_lib_c_r_c.html", null ],
-    [ "RadioLibHal", "class_radio_lib_hal.html", null ],
+    [ "RadioLibHal", "class_radio_lib_hal.html", [
+      [ "PiHal", "class_pi_hal.html", null ],
+      [ "PicoHal", "class_pico_hal.html", null ]
+    ] ],
     [ "RadioLibPrint", "class_radio_lib_print.html", [
       [ "BellClient", "class_bell_client.html", null ],
       [ "HellClient", "class_hell_client.html", null ],
