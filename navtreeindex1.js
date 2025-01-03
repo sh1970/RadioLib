@@ -187,7 +187,7 @@ var NAVTREEINDEX1 =
 "class_module.html#ad1956ac81429ec1f61f83dbc081cf18c":[3,0,39,11],
 "class_module.html#ad6cddbf3aebec9717a1a381dd81ad398":[3,0,39,10],
 "class_module.html#adacceb57ecfecb09150c135b2b44436f":[3,0,39,20],
-"class_module.html#ade75c5403a05156b43cc7562563ae2d7":[3,0,39,22],
+"class_module.html#aed95fba2ee72d7a2a21f98dd63ae4ad1":[3,0,39,22],
 "class_module.html#af99b0e74e67417a88f500ab7261ddd20":[3,0,39,27],
 "class_module.html#afbed643f082286012bf44bba22381ae6":[3,0,39,14],
 "class_morse_client.html":[3,0,40],
