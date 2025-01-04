@@ -177,7 +177,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActivated</b> ()</t
 <tr class="memdesc:a3d4bbd6d382496838954ab4ac1168b77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle adherence to dutyCycle limits to on or off.  <br /></td></tr>
 <tr class="separator:a3d4bbd6d382496838954ab4ac1168b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62bfe68f6fe63c2e408dccbff6a34a4f" id="r_a62bfe68f6fe63c2e408dccbff6a34a4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lo_ra_w_a_n_node.html#a62bfe68f6fe63c2e408dccbff6a34a4f">setDwellTime</a> (bool enable, <a class="el" href="group__typedefs.html#ga210f31dd2bff7fb80563275648a5bbbd">RadioLibTime_t</a> msPerUplink=0)</td></tr>
-<tr class="memdesc:a62bfe68f6fe63c2e408dccbff6a34a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle adherence to dwellTime limits to on or off.  <br /></td></tr>
+<tr class="memdesc:a62bfe68f6fe63c2e408dccbff6a34a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set or disable uplink dwell time limitation; enabled by default if mandatory.  <br /></td></tr>
 <tr class="separator:a62bfe68f6fe63c2e408dccbff6a34a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d9a53560ebfbaf006eefd9761424d80" id="r_a2d9a53560ebfbaf006eefd9761424d80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lo_ra_w_a_n_node.html#a2d9a53560ebfbaf006eefd9761424d80">setCSMA</a> (bool csmaEnabled, uint8_t maxChanges=4, uint8_t backoffMax=0, uint8_t difsSlots=2)</td></tr>
 <tr class="memdesc:a2d9a53560ebfbaf006eefd9761424d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures CSMA for LoRaWAN as per TR013, LoRa Alliance.  <br /></td></tr>
@@ -1282,11 +1282,11 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>TS009</b> = false</td
       </table>
 </div><div class="memdoc">
 
-<p>Toggle adherence to dwellTime limits to on or off. </p>
+<p>Set or disable uplink dwell time limitation; enabled by default if mandatory. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">enable</td><td>Whether to adhere to dwellTime limits or not (default true). </td></tr>
-    <tr><td class="paramname">msPerUplink</td><td>The maximum allowed Time-on-Air per uplink in milliseconds (default 0 = maximum allowed for configured band). </td></tr>
+    <tr><td class="paramname">msPerUplink</td><td>The maximum allowed Time-on-Air per uplink in milliseconds (default 0 = band default value); make sure you follow regulations/law! </td></tr>
   </table>
   </dd>
 </dl>
