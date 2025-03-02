@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2025-03-02 07:44:48</td>
+            <td class="headerValue">2025-03-02 13:45:39</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">9</td>
@@ -289,7 +289,7 @@
 <a name="227"><span class="lineNum">     227 </span>            :     for(size_t n = 0; n &lt; numBytes; n++) {</a>
 <a name="228"><span class="lineNum">     228 </span>            :       RADIOLIB_DEBUG_SPI_PRINT_NOTAG(&quot;%X\t&quot;, debugBuffPtr[n]);</a>
 <a name="229"><span class="lineNum">     229 </span>            :     }</a>
-<a name="230"><span class="lineNum">     230 </span>            :     RADIOLIB_DEBUG_SPI_PRINTLN_NOTAG();</a>
+<a name="230"><span class="lineNum">     230 </span>            :     RADIOLIB_DEBUG_SPI_PRINTLN_NOTAG(&quot;&quot;);</a>
 <a name="231"><span class="lineNum">     231 </span>            :   #endif</a>
 <a name="232"><span class="lineNum">     232 </span>            : </a>
 <a name="233"><span class="lineNum">     233 </span>            :   #if !RADIOLIB_STATIC_ONLY</a>
@@ -488,7 +488,7 @@
 <a name="426"><span class="lineNum">     426 </span>            :     for(; n &lt; cmdLen; n++) {</a>
 <a name="427"><span class="lineNum">     427 </span>            :       RADIOLIB_DEBUG_SPI_PRINT_NOTAG(&quot;%X\t&quot;, cmd[n]);</a>
 <a name="428"><span class="lineNum">     428 </span>            :     }</a>
-<a name="429"><span class="lineNum">     429 </span>            :     RADIOLIB_DEBUG_SPI_PRINTLN_NOTAG();</a>
+<a name="429"><span class="lineNum">     429 </span>            :     RADIOLIB_DEBUG_SPI_PRINTLN_NOTAG(&quot;&quot;);</a>
 <a name="430"><span class="lineNum">     430 </span>            : </a>
 <a name="431"><span class="lineNum">     431 </span>            :     // print data bytes</a>
 <a name="432"><span class="lineNum">     432 </span>            :     RADIOLIB_DEBUG_SPI_PRINT(&quot;SI\t&quot;);</a>
@@ -498,12 +498,12 @@
 <a name="436"><span class="lineNum">     436 </span>            :     for(; n &lt; buffLen; n++) {</a>
 <a name="437"><span class="lineNum">     437 </span>            :       RADIOLIB_DEBUG_SPI_PRINT_NOTAG(&quot;%X\t&quot;, buffOut[n]);</a>
 <a name="438"><span class="lineNum">     438 </span>            :     }</a>
-<a name="439"><span class="lineNum">     439 </span>            :     RADIOLIB_DEBUG_SPI_PRINTLN_NOTAG();</a>
+<a name="439"><span class="lineNum">     439 </span>            :     RADIOLIB_DEBUG_SPI_PRINTLN_NOTAG(&quot;&quot;);</a>
 <a name="440"><span class="lineNum">     440 </span>            :     RADIOLIB_DEBUG_SPI_PRINT(&quot;SO\t&quot;);</a>
 <a name="441"><span class="lineNum">     441 </span>            :     for(n = 0; n &lt; buffLen; n++) {</a>
 <a name="442"><span class="lineNum">     442 </span>            :       RADIOLIB_DEBUG_SPI_PRINT_NOTAG(&quot;%X\t&quot;, buffIn[n]);</a>
 <a name="443"><span class="lineNum">     443 </span>            :     }</a>
-<a name="444"><span class="lineNum">     444 </span>            :     RADIOLIB_DEBUG_SPI_PRINTLN_NOTAG();</a>
+<a name="444"><span class="lineNum">     444 </span>            :     RADIOLIB_DEBUG_SPI_PRINTLN_NOTAG(&quot;&quot;);</a>
 <a name="445"><span class="lineNum">     445 </span>            :   #endif</a>
 <a name="446"><span class="lineNum">     446 </span>            : </a>
 <a name="447"><span class="lineNum">     447 </span>            :   #if !RADIOLIB_STATIC_ONLY</a>
