@@ -32,16 +32,16 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">473</td>
+            <td class="headerCovTableEntry">475</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2025-10-16 13:48:57</td>
+            <td class="headerValue">2025-10-19 19:46:04</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">87</td>
+            <td class="headerCovTableEntry">88</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -894,65 +894,69 @@
 <a name="832"><span class="lineNum">     832 </span><span class="lineNoCov">          0 :   return(this-&gt;writeCommon(RADIOLIB_LR11X0_CMD_BOOT_WRITE_FLASH_ENCRYPTED, offset, data, len, nonvolatile));</span></a>
 <a name="833"><span class="lineNum">     833 </span>            : }</a>
 <a name="834"><span class="lineNum">     834 </span>            : </a>
-<a name="835"><span class="lineNum">     835 </span><span class="lineNoCov">          0 : int16_t LR11x0::bootReboot(bool stay) {</span></a>
-<a name="836"><span class="lineNum">     836 </span><span class="lineNoCov">          0 :   uint8_t buff[1] = { (uint8_t)stay };</span></a>
-<a name="837"><span class="lineNum">     837 </span><span class="lineNoCov">          0 :   return(this-&gt;SPIcommand(RADIOLIB_LR11X0_CMD_BOOT_REBOOT, true, buff, sizeof(buff)));</span></a>
-<a name="838"><span class="lineNum">     838 </span>            : }</a>
-<a name="839"><span class="lineNum">     839 </span>            : </a>
-<a name="840"><span class="lineNum">     840 </span><span class="lineNoCov">          0 : int16_t LR11x0::bootGetPin(uint8_t* pin) {</span></a>
-<a name="841"><span class="lineNum">     841 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT_PTR(pin);</span></a>
-<a name="842"><span class="lineNum">     842 </span><span class="lineNoCov">          0 :   return(this-&gt;SPIcommand(RADIOLIB_LR11X0_CMD_BOOT_GET_PIN, false, pin, RADIOLIB_LR11X0_PIN_LEN));</span></a>
-<a name="843"><span class="lineNum">     843 </span>            : }</a>
-<a name="844"><span class="lineNum">     844 </span>            : </a>
-<a name="845"><span class="lineNum">     845 </span><span class="lineNoCov">          0 : int16_t LR11x0::bootGetChipEui(uint8_t* eui) {</span></a>
-<a name="846"><span class="lineNum">     846 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT_PTR(eui);</span></a>
-<a name="847"><span class="lineNum">     847 </span><span class="lineNoCov">          0 :   return(this-&gt;SPIcommand(RADIOLIB_LR11X0_CMD_BOOT_GET_CHIP_EUI, false, eui, RADIOLIB_LR11X0_EUI_LEN));</span></a>
-<a name="848"><span class="lineNum">     848 </span>            : }</a>
-<a name="849"><span class="lineNum">     849 </span>            : </a>
-<a name="850"><span class="lineNum">     850 </span><span class="lineNoCov">          0 : int16_t LR11x0::bootGetJoinEui(uint8_t* eui) {</span></a>
-<a name="851"><span class="lineNum">     851 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT_PTR(eui);</span></a>
-<a name="852"><span class="lineNum">     852 </span><span class="lineNoCov">          0 :   return(this-&gt;SPIcommand(RADIOLIB_LR11X0_CMD_BOOT_GET_JOIN_EUI, false, eui, RADIOLIB_LR11X0_EUI_LEN));</span></a>
-<a name="853"><span class="lineNum">     853 </span>            : }</a>
-<a name="854"><span class="lineNum">     854 </span>            : </a>
-<a name="855"><span class="lineNum">     855 </span><span class="lineNoCov">          0 : int16_t LR11x0::writeCommon(uint16_t cmd, uint32_t addrOffset, const uint32_t* data, size_t len, bool nonvolatile) {</span></a>
-<a name="856"><span class="lineNum">     856 </span>            :   // build buffers - later we need to ensure endians are correct, </a>
-<a name="857"><span class="lineNum">     857 </span>            :   // so there is probably no way to do this without copying buffers and iterating</a>
-<a name="858"><span class="lineNum">     858 </span><span class="lineNoCov">          0 :   size_t buffLen = sizeof(uint32_t) + len*sizeof(uint32_t);</span></a>
-<a name="859"><span class="lineNum">     859 </span>            :   #if RADIOLIB_STATIC_ONLY</a>
-<a name="860"><span class="lineNum">     860 </span>            :     uint8_t dataBuff[sizeof(uint32_t) + RADIOLIB_LR11X0_SPI_MAX_READ_WRITE_LEN];</a>
-<a name="861"><span class="lineNum">     861 </span>            :   #else</a>
-<a name="862"><span class="lineNum">     862 </span><span class="lineNoCov">          0 :     uint8_t* dataBuff = new uint8_t[buffLen];</span></a>
-<a name="863"><span class="lineNum">     863 </span>            :   #endif</a>
-<a name="864"><span class="lineNum">     864 </span>            : </a>
-<a name="865"><span class="lineNum">     865 </span>            :   // set the address or offset</a>
-<a name="866"><span class="lineNum">     866 </span><span class="lineNoCov">          0 :   dataBuff[0] = (uint8_t)((addrOffset &gt;&gt; 24) &amp; 0xFF);</span></a>
-<a name="867"><span class="lineNum">     867 </span><span class="lineNoCov">          0 :   dataBuff[1] = (uint8_t)((addrOffset &gt;&gt; 16) &amp; 0xFF);</span></a>
-<a name="868"><span class="lineNum">     868 </span><span class="lineNoCov">          0 :   dataBuff[2] = (uint8_t)((addrOffset &gt;&gt; 8) &amp; 0xFF);</span></a>
-<a name="869"><span class="lineNum">     869 </span><span class="lineNoCov">          0 :   dataBuff[3] = (uint8_t)(addrOffset &amp; 0xFF);</span></a>
-<a name="870"><span class="lineNum">     870 </span>            : </a>
-<a name="871"><span class="lineNum">     871 </span>            :   // convert endians</a>
-<a name="872"><span class="lineNum">     872 </span><span class="lineNoCov">          0 :   for(size_t i = 0; i &lt; len; i++) {</span></a>
-<a name="873"><span class="lineNum">     873 </span><span class="lineNoCov">          0 :     uint32_t bin = 0;</span></a>
-<a name="874"><span class="lineNum">     874 </span><span class="lineNoCov">          0 :     if(nonvolatile) {</span></a>
-<a name="875"><span class="lineNum">     875 </span><span class="lineNoCov">          0 :       uint32_t* ptr = const_cast&lt;uint32_t*&gt;(data) + i;</span></a>
-<a name="876"><span class="lineNum">     876 </span><span class="lineNoCov">          0 :       bin = RADIOLIB_NONVOLATILE_READ_DWORD(ptr);</span></a>
-<a name="877"><span class="lineNum">     877 </span>            :     } else {</a>
-<a name="878"><span class="lineNum">     878 </span><span class="lineNoCov">          0 :       bin = data[i];</span></a>
-<a name="879"><span class="lineNum">     879 </span>            :     }</a>
-<a name="880"><span class="lineNum">     880 </span><span class="lineNoCov">          0 :     dataBuff[4 + i*sizeof(uint32_t)] = (uint8_t)((bin &gt;&gt; 24) &amp; 0xFF);</span></a>
-<a name="881"><span class="lineNum">     881 </span><span class="lineNoCov">          0 :     dataBuff[5 + i*sizeof(uint32_t)] = (uint8_t)((bin &gt;&gt; 16) &amp; 0xFF);</span></a>
-<a name="882"><span class="lineNum">     882 </span><span class="lineNoCov">          0 :     dataBuff[6 + i*sizeof(uint32_t)] = (uint8_t)((bin &gt;&gt; 8) &amp; 0xFF);</span></a>
-<a name="883"><span class="lineNum">     883 </span><span class="lineNoCov">          0 :     dataBuff[7 + i*sizeof(uint32_t)] = (uint8_t)(bin &amp; 0xFF);</span></a>
-<a name="884"><span class="lineNum">     884 </span>            :   }</a>
-<a name="885"><span class="lineNum">     885 </span>            : </a>
-<a name="886"><span class="lineNum">     886 </span><span class="lineNoCov">          0 :   int16_t state = this-&gt;mod-&gt;SPIwriteStream(cmd, dataBuff, buffLen, true, false);</span></a>
-<a name="887"><span class="lineNum">     887 </span>            :   #if !RADIOLIB_STATIC_ONLY</a>
-<a name="888"><span class="lineNum">     888 </span><span class="lineNoCov">          0 :     delete[] dataBuff;</span></a>
-<a name="889"><span class="lineNum">     889 </span>            :   #endif</a>
-<a name="890"><span class="lineNum">     890 </span><span class="lineNoCov">          0 :   return(state);</span></a>
-<a name="891"><span class="lineNum">     891 </span>            : }</a>
-<a name="892"><span class="lineNum">     892 </span>            : </a>
-<a name="893"><span class="lineNum">     893 </span>            : #endif</a>
+<a name="835"><span class="lineNum">     835 </span><span class="lineNoCov">          0 : int16_t LR11x0::bootGetHash(uint8_t hash[RADIOLIB_LR11X0_HASH_LEN]) {</span></a>
+<a name="836"><span class="lineNum">     836 </span><span class="lineNoCov">          0 :   return(this-&gt;SPIcommand(RADIOLIB_LR11X0_CMD_BOOT_GET_HASH, false, hash, RADIOLIB_LR11X0_HASH_LEN));</span></a>
+<a name="837"><span class="lineNum">     837 </span>            : }</a>
+<a name="838"><span class="lineNum">     838 </span>            : </a>
+<a name="839"><span class="lineNum">     839 </span><span class="lineNoCov">          0 : int16_t LR11x0::bootReboot(bool stay) {</span></a>
+<a name="840"><span class="lineNum">     840 </span><span class="lineNoCov">          0 :   uint8_t buff[1] = { (uint8_t)stay };</span></a>
+<a name="841"><span class="lineNum">     841 </span><span class="lineNoCov">          0 :   return(this-&gt;SPIcommand(RADIOLIB_LR11X0_CMD_BOOT_REBOOT, true, buff, sizeof(buff)));</span></a>
+<a name="842"><span class="lineNum">     842 </span>            : }</a>
+<a name="843"><span class="lineNum">     843 </span>            : </a>
+<a name="844"><span class="lineNum">     844 </span><span class="lineNoCov">          0 : int16_t LR11x0::bootGetPin(uint8_t* pin) {</span></a>
+<a name="845"><span class="lineNum">     845 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT_PTR(pin);</span></a>
+<a name="846"><span class="lineNum">     846 </span><span class="lineNoCov">          0 :   return(this-&gt;SPIcommand(RADIOLIB_LR11X0_CMD_BOOT_GET_PIN, false, pin, RADIOLIB_LR11X0_PIN_LEN));</span></a>
+<a name="847"><span class="lineNum">     847 </span>            : }</a>
+<a name="848"><span class="lineNum">     848 </span>            : </a>
+<a name="849"><span class="lineNum">     849 </span><span class="lineNoCov">          0 : int16_t LR11x0::bootGetChipEui(uint8_t* eui) {</span></a>
+<a name="850"><span class="lineNum">     850 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT_PTR(eui);</span></a>
+<a name="851"><span class="lineNum">     851 </span><span class="lineNoCov">          0 :   return(this-&gt;SPIcommand(RADIOLIB_LR11X0_CMD_BOOT_GET_CHIP_EUI, false, eui, RADIOLIB_LR11X0_EUI_LEN));</span></a>
+<a name="852"><span class="lineNum">     852 </span>            : }</a>
+<a name="853"><span class="lineNum">     853 </span>            : </a>
+<a name="854"><span class="lineNum">     854 </span><span class="lineNoCov">          0 : int16_t LR11x0::bootGetJoinEui(uint8_t* eui) {</span></a>
+<a name="855"><span class="lineNum">     855 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT_PTR(eui);</span></a>
+<a name="856"><span class="lineNum">     856 </span><span class="lineNoCov">          0 :   return(this-&gt;SPIcommand(RADIOLIB_LR11X0_CMD_BOOT_GET_JOIN_EUI, false, eui, RADIOLIB_LR11X0_EUI_LEN));</span></a>
+<a name="857"><span class="lineNum">     857 </span>            : }</a>
+<a name="858"><span class="lineNum">     858 </span>            : </a>
+<a name="859"><span class="lineNum">     859 </span><span class="lineNoCov">          0 : int16_t LR11x0::writeCommon(uint16_t cmd, uint32_t addrOffset, const uint32_t* data, size_t len, bool nonvolatile) {</span></a>
+<a name="860"><span class="lineNum">     860 </span>            :   // build buffers - later we need to ensure endians are correct, </a>
+<a name="861"><span class="lineNum">     861 </span>            :   // so there is probably no way to do this without copying buffers and iterating</a>
+<a name="862"><span class="lineNum">     862 </span><span class="lineNoCov">          0 :   size_t buffLen = sizeof(uint32_t) + len*sizeof(uint32_t);</span></a>
+<a name="863"><span class="lineNum">     863 </span>            :   #if RADIOLIB_STATIC_ONLY</a>
+<a name="864"><span class="lineNum">     864 </span>            :     uint8_t dataBuff[sizeof(uint32_t) + RADIOLIB_LR11X0_SPI_MAX_READ_WRITE_LEN];</a>
+<a name="865"><span class="lineNum">     865 </span>            :   #else</a>
+<a name="866"><span class="lineNum">     866 </span><span class="lineNoCov">          0 :     uint8_t* dataBuff = new uint8_t[buffLen];</span></a>
+<a name="867"><span class="lineNum">     867 </span>            :   #endif</a>
+<a name="868"><span class="lineNum">     868 </span>            : </a>
+<a name="869"><span class="lineNum">     869 </span>            :   // set the address or offset</a>
+<a name="870"><span class="lineNum">     870 </span><span class="lineNoCov">          0 :   dataBuff[0] = (uint8_t)((addrOffset &gt;&gt; 24) &amp; 0xFF);</span></a>
+<a name="871"><span class="lineNum">     871 </span><span class="lineNoCov">          0 :   dataBuff[1] = (uint8_t)((addrOffset &gt;&gt; 16) &amp; 0xFF);</span></a>
+<a name="872"><span class="lineNum">     872 </span><span class="lineNoCov">          0 :   dataBuff[2] = (uint8_t)((addrOffset &gt;&gt; 8) &amp; 0xFF);</span></a>
+<a name="873"><span class="lineNum">     873 </span><span class="lineNoCov">          0 :   dataBuff[3] = (uint8_t)(addrOffset &amp; 0xFF);</span></a>
+<a name="874"><span class="lineNum">     874 </span>            : </a>
+<a name="875"><span class="lineNum">     875 </span>            :   // convert endians</a>
+<a name="876"><span class="lineNum">     876 </span><span class="lineNoCov">          0 :   for(size_t i = 0; i &lt; len; i++) {</span></a>
+<a name="877"><span class="lineNum">     877 </span><span class="lineNoCov">          0 :     uint32_t bin = 0;</span></a>
+<a name="878"><span class="lineNum">     878 </span><span class="lineNoCov">          0 :     if(nonvolatile) {</span></a>
+<a name="879"><span class="lineNum">     879 </span><span class="lineNoCov">          0 :       uint32_t* ptr = const_cast&lt;uint32_t*&gt;(data) + i;</span></a>
+<a name="880"><span class="lineNum">     880 </span><span class="lineNoCov">          0 :       bin = RADIOLIB_NONVOLATILE_READ_DWORD(ptr);</span></a>
+<a name="881"><span class="lineNum">     881 </span>            :     } else {</a>
+<a name="882"><span class="lineNum">     882 </span><span class="lineNoCov">          0 :       bin = data[i];</span></a>
+<a name="883"><span class="lineNum">     883 </span>            :     }</a>
+<a name="884"><span class="lineNum">     884 </span><span class="lineNoCov">          0 :     dataBuff[4 + i*sizeof(uint32_t)] = (uint8_t)((bin &gt;&gt; 24) &amp; 0xFF);</span></a>
+<a name="885"><span class="lineNum">     885 </span><span class="lineNoCov">          0 :     dataBuff[5 + i*sizeof(uint32_t)] = (uint8_t)((bin &gt;&gt; 16) &amp; 0xFF);</span></a>
+<a name="886"><span class="lineNum">     886 </span><span class="lineNoCov">          0 :     dataBuff[6 + i*sizeof(uint32_t)] = (uint8_t)((bin &gt;&gt; 8) &amp; 0xFF);</span></a>
+<a name="887"><span class="lineNum">     887 </span><span class="lineNoCov">          0 :     dataBuff[7 + i*sizeof(uint32_t)] = (uint8_t)(bin &amp; 0xFF);</span></a>
+<a name="888"><span class="lineNum">     888 </span>            :   }</a>
+<a name="889"><span class="lineNum">     889 </span>            : </a>
+<a name="890"><span class="lineNum">     890 </span><span class="lineNoCov">          0 :   int16_t state = this-&gt;mod-&gt;SPIwriteStream(cmd, dataBuff, buffLen, true, false);</span></a>
+<a name="891"><span class="lineNum">     891 </span>            :   #if !RADIOLIB_STATIC_ONLY</a>
+<a name="892"><span class="lineNum">     892 </span><span class="lineNoCov">          0 :     delete[] dataBuff;</span></a>
+<a name="893"><span class="lineNum">     893 </span>            :   #endif</a>
+<a name="894"><span class="lineNum">     894 </span><span class="lineNoCov">          0 :   return(state);</span></a>
+<a name="895"><span class="lineNum">     895 </span>            : }</a>
+<a name="896"><span class="lineNum">     896 </span>            : </a>
+<a name="897"><span class="lineNum">     897 </span>            : #endif</a>
 </pre>
       </td>
     </tr>
