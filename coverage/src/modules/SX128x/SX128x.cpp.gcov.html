@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">41</td>
-            <td class="headerCovTableEntry">987</td>
-            <td class="headerCovTableEntryLo">4.2 %</td>
+            <td class="headerCovTableEntry">988</td>
+            <td class="headerCovTableEntryLo">4.1 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2025-11-09 19:49:17</td>
+            <td class="headerValue">2025-11-10 19:47:20</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -1761,101 +1761,102 @@
 <a name="1699"><span class="lineNum">    1699 </span>            : </a>
 <a name="1700"><span class="lineNum">    1700 </span><span class="lineNoCov">          0 : int16_t SX128x::setPacketMode(uint8_t mode, uint8_t len) {</span></a>
 <a name="1701"><span class="lineNum">    1701 </span>            :   // check active modem</a>
-<a name="1702"><span class="lineNum">    1702 </span><span class="lineNoCov">          0 :   if(getPacketType() != RADIOLIB_SX128X_PACKET_TYPE_GFSK) {</span></a>
-<a name="1703"><span class="lineNum">    1703 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_WRONG_MODEM);</span></a>
-<a name="1704"><span class="lineNum">    1704 </span>            :   }</a>
-<a name="1705"><span class="lineNum">    1705 </span>            : </a>
-<a name="1706"><span class="lineNum">    1706 </span>            :   // set requested packet mode</a>
-<a name="1707"><span class="lineNum">    1707 </span><span class="lineNoCov">          0 :   int16_t state = setPacketParamsGFSK(this-&gt;preambleLengthGFSK, this-&gt;syncWordLen, this-&gt;syncWordMatch, this-&gt;crcGFSK, this-&gt;whitening, mode, len);</span></a>
-<a name="1708"><span class="lineNum">    1708 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT(state);</span></a>
-<a name="1709"><span class="lineNum">    1709 </span>            : </a>
-<a name="1710"><span class="lineNum">    1710 </span>            :   // update cached value</a>
-<a name="1711"><span class="lineNum">    1711 </span><span class="lineNoCov">          0 :   this-&gt;packetType = mode;</span></a>
-<a name="1712"><span class="lineNum">    1712 </span><span class="lineNoCov">          0 :   return(state);</span></a>
-<a name="1713"><span class="lineNum">    1713 </span>            : }</a>
-<a name="1714"><span class="lineNum">    1714 </span>            : </a>
-<a name="1715"><span class="lineNum">    1715 </span><span class="lineNoCov">          0 : int16_t SX128x::setHeaderType(uint8_t hdrType, size_t len) {</span></a>
-<a name="1716"><span class="lineNum">    1716 </span>            :   // check active modem</a>
-<a name="1717"><span class="lineNum">    1717 </span><span class="lineNoCov">          0 :   uint8_t modem = getPacketType();</span></a>
-<a name="1718"><span class="lineNum">    1718 </span><span class="lineNoCov">          0 :   if(!((modem == RADIOLIB_SX128X_PACKET_TYPE_LORA) || (modem == RADIOLIB_SX128X_PACKET_TYPE_RANGING))) {</span></a>
-<a name="1719"><span class="lineNum">    1719 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_WRONG_MODEM);</span></a>
-<a name="1720"><span class="lineNum">    1720 </span>            :   }</a>
-<a name="1721"><span class="lineNum">    1721 </span>            : </a>
-<a name="1722"><span class="lineNum">    1722 </span>            :   // update packet parameters</a>
-<a name="1723"><span class="lineNum">    1723 </span><span class="lineNoCov">          0 :   this-&gt;headerType = hdrType;</span></a>
-<a name="1724"><span class="lineNum">    1724 </span><span class="lineNoCov">          0 :   this-&gt;payloadLen = len;</span></a>
-<a name="1725"><span class="lineNum">    1725 </span><span class="lineNoCov">          0 :   return(setPacketParamsLoRa(this-&gt;preambleLengthLoRa, this-&gt;headerType, this-&gt;payloadLen, this-&gt;crcLoRa, this-&gt;invertIQEnabled));</span></a>
-<a name="1726"><span class="lineNum">    1726 </span>            : }</a>
-<a name="1727"><span class="lineNum">    1727 </span>            : </a>
-<a name="1728"><span class="lineNum">    1728 </span><span class="lineNoCov">          0 : int16_t SX128x::config(uint8_t modem) {</span></a>
-<a name="1729"><span class="lineNum">    1729 </span>            :   // reset buffer base address</a>
-<a name="1730"><span class="lineNum">    1730 </span><span class="lineNoCov">          0 :   int16_t state = setBufferBaseAddress();</span></a>
-<a name="1731"><span class="lineNum">    1731 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT(state);</span></a>
-<a name="1732"><span class="lineNum">    1732 </span>            : </a>
-<a name="1733"><span class="lineNum">    1733 </span>            :   // set modem</a>
-<a name="1734"><span class="lineNum">    1734 </span>            :   uint8_t data[1];</a>
-<a name="1735"><span class="lineNum">    1735 </span><span class="lineNoCov">          0 :   data[0] = modem;</span></a>
-<a name="1736"><span class="lineNum">    1736 </span><span class="lineNoCov">          0 :   state = this-&gt;mod-&gt;SPIwriteStream(RADIOLIB_SX128X_CMD_SET_PACKET_TYPE, data, 1);</span></a>
-<a name="1737"><span class="lineNum">    1737 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT(state);</span></a>
-<a name="1738"><span class="lineNum">    1738 </span>            : </a>
-<a name="1739"><span class="lineNum">    1739 </span>            :   // set CAD parameters</a>
-<a name="1740"><span class="lineNum">    1740 </span><span class="lineNoCov">          0 :   data[0] = RADIOLIB_SX128X_CAD_ON_8_SYMB;</span></a>
-<a name="1741"><span class="lineNum">    1741 </span><span class="lineNoCov">          0 :   state = this-&gt;mod-&gt;SPIwriteStream(RADIOLIB_SX128X_CMD_SET_CAD_PARAMS, data, 1);</span></a>
-<a name="1742"><span class="lineNum">    1742 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT(state);</span></a>
-<a name="1743"><span class="lineNum">    1743 </span>            : </a>
-<a name="1744"><span class="lineNum">    1744 </span>            :   // set regulator mode to DC-DC</a>
-<a name="1745"><span class="lineNum">    1745 </span><span class="lineNoCov">          0 :   data[0] = RADIOLIB_SX128X_REGULATOR_DC_DC;</span></a>
-<a name="1746"><span class="lineNum">    1746 </span><span class="lineNoCov">          0 :   state = this-&gt;mod-&gt;SPIwriteStream(RADIOLIB_SX128X_CMD_SET_REGULATOR_MODE, data, 1);</span></a>
-<a name="1747"><span class="lineNum">    1747 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT(state);</span></a>
-<a name="1748"><span class="lineNum">    1748 </span>            : </a>
-<a name="1749"><span class="lineNum">    1749 </span><span class="lineNoCov">          0 :   return(RADIOLIB_ERR_NONE);</span></a>
-<a name="1750"><span class="lineNum">    1750 </span>            : }</a>
-<a name="1751"><span class="lineNum">    1751 </span>            : </a>
-<a name="1752"><span class="lineNum">    1752 </span><span class="lineNoCov">          0 : int16_t SX128x::SPIparseStatus(uint8_t in) {</span></a>
-<a name="1753"><span class="lineNum">    1753 </span><span class="lineNoCov">          0 :   if((in &amp; 0b00011100) == RADIOLIB_SX128X_STATUS_CMD_TIMEOUT) {</span></a>
-<a name="1754"><span class="lineNum">    1754 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_SPI_CMD_TIMEOUT);</span></a>
-<a name="1755"><span class="lineNum">    1755 </span><span class="lineNoCov">          0 :   } else if((in &amp; 0b00011100) == RADIOLIB_SX128X_STATUS_CMD_ERROR) {</span></a>
-<a name="1756"><span class="lineNum">    1756 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_SPI_CMD_INVALID);</span></a>
-<a name="1757"><span class="lineNum">    1757 </span><span class="lineNoCov">          0 :   } else if((in &amp; 0b00011100) == RADIOLIB_SX128X_STATUS_CMD_FAILED) {</span></a>
-<a name="1758"><span class="lineNum">    1758 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_SPI_CMD_FAILED);</span></a>
-<a name="1759"><span class="lineNum">    1759 </span><span class="lineNoCov">          0 :   } else if((in == 0x00) || (in == 0xFF)) {</span></a>
-<a name="1760"><span class="lineNum">    1760 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_CHIP_NOT_FOUND);</span></a>
-<a name="1761"><span class="lineNum">    1761 </span>            :   }</a>
-<a name="1762"><span class="lineNum">    1762 </span><span class="lineNoCov">          0 :   return(RADIOLIB_ERR_NONE);</span></a>
-<a name="1763"><span class="lineNum">    1763 </span>            : }</a>
-<a name="1764"><span class="lineNum">    1764 </span>            : </a>
-<a name="1765"><span class="lineNum">    1765 </span><span class="lineNoCov">          0 : bool SX128x::findChip(const char* verStr) {</span></a>
-<a name="1766"><span class="lineNum">    1766 </span><span class="lineNoCov">          0 :   uint8_t i = 0;</span></a>
-<a name="1767"><span class="lineNum">    1767 </span><span class="lineNoCov">          0 :   bool flagFound = false;</span></a>
-<a name="1768"><span class="lineNum">    1768 </span><span class="lineNoCov">          0 :   while((i &lt; 10) &amp;&amp; !flagFound) {</span></a>
-<a name="1769"><span class="lineNum">    1769 </span>            :     // reset the module</a>
-<a name="1770"><span class="lineNum">    1770 </span><span class="lineNoCov">          0 :     reset(true);</span></a>
-<a name="1771"><span class="lineNum">    1771 </span>            : </a>
-<a name="1772"><span class="lineNum">    1772 </span>            :     // read the version string</a>
-<a name="1773"><span class="lineNum">    1773 </span><span class="lineNoCov">          0 :     char version[16] = { 0 };</span></a>
-<a name="1774"><span class="lineNum">    1774 </span><span class="lineNoCov">          0 :     this-&gt;mod-&gt;SPIreadRegisterBurst(RADIOLIB_SX128X_REG_VERSION_STRING, 16, reinterpret_cast&lt;uint8_t*&gt;(version));</span></a>
-<a name="1775"><span class="lineNum">    1775 </span>            : </a>
-<a name="1776"><span class="lineNum">    1776 </span>            :     // check version register</a>
-<a name="1777"><span class="lineNum">    1777 </span><span class="lineNoCov">          0 :     if(strncmp(verStr, version, 6) == 0) {</span></a>
-<a name="1778"><span class="lineNum">    1778 </span>            :       RADIOLIB_DEBUG_BASIC_PRINTLN(&quot;Found SX128x: RADIOLIB_SX128X_REG_VERSION_STRING:&quot;);</a>
-<a name="1779"><span class="lineNum">    1779 </span>            :       RADIOLIB_DEBUG_BASIC_HEXDUMP(reinterpret_cast&lt;uint8_t*&gt;(version), 16, RADIOLIB_SX128X_REG_VERSION_STRING);</a>
-<a name="1780"><span class="lineNum">    1780 </span>            :       RADIOLIB_DEBUG_BASIC_PRINTLN();</a>
-<a name="1781"><span class="lineNum">    1781 </span><span class="lineNoCov">          0 :       flagFound = true;</span></a>
-<a name="1782"><span class="lineNum">    1782 </span>            :     } else {</a>
-<a name="1783"><span class="lineNum">    1783 </span>            :       #if RADIOLIB_DEBUG_BASIC</a>
-<a name="1784"><span class="lineNum">    1784 </span>            :         RADIOLIB_DEBUG_BASIC_PRINTLN(&quot;SX128x not found! (%d of 10 tries) RADIOLIB_SX128X_REG_VERSION_STRING:&quot;, i + 1);</a>
-<a name="1785"><span class="lineNum">    1785 </span>            :         RADIOLIB_DEBUG_BASIC_HEXDUMP(reinterpret_cast&lt;uint8_t*&gt;(version), 16, RADIOLIB_SX128X_REG_VERSION_STRING);</a>
-<a name="1786"><span class="lineNum">    1786 </span>            :         RADIOLIB_DEBUG_BASIC_PRINTLN(&quot;Expected string: %s&quot;, verStr);</a>
-<a name="1787"><span class="lineNum">    1787 </span>            :       #endif</a>
-<a name="1788"><span class="lineNum">    1788 </span><span class="lineNoCov">          0 :       this-&gt;mod-&gt;hal-&gt;delay(10);</span></a>
-<a name="1789"><span class="lineNum">    1789 </span><span class="lineNoCov">          0 :       i++;</span></a>
-<a name="1790"><span class="lineNum">    1790 </span>            :     }</a>
-<a name="1791"><span class="lineNum">    1791 </span>            :   }</a>
-<a name="1792"><span class="lineNum">    1792 </span>            : </a>
-<a name="1793"><span class="lineNum">    1793 </span><span class="lineNoCov">          0 :   return(flagFound);</span></a>
-<a name="1794"><span class="lineNum">    1794 </span>            : }</a>
-<a name="1795"><span class="lineNum">    1795 </span>            : </a>
-<a name="1796"><span class="lineNum">    1796 </span>            : #endif</a>
+<a name="1702"><span class="lineNum">    1702 </span><span class="lineNoCov">          0 :   uint8_t modem = getPacketType();</span></a>
+<a name="1703"><span class="lineNum">    1703 </span><span class="lineNoCov">          0 :   if(!((modem == RADIOLIB_SX128X_PACKET_TYPE_GFSK) || (modem == RADIOLIB_SX128X_PACKET_TYPE_FLRC))) {</span></a>
+<a name="1704"><span class="lineNum">    1704 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_WRONG_MODEM);</span></a>
+<a name="1705"><span class="lineNum">    1705 </span>            :   }</a>
+<a name="1706"><span class="lineNum">    1706 </span>            : </a>
+<a name="1707"><span class="lineNum">    1707 </span>            :   // set requested packet mode</a>
+<a name="1708"><span class="lineNum">    1708 </span><span class="lineNoCov">          0 :   int16_t state = setPacketParamsGFSK(this-&gt;preambleLengthGFSK, this-&gt;syncWordLen, this-&gt;syncWordMatch, this-&gt;crcGFSK, this-&gt;whitening, mode, len);</span></a>
+<a name="1709"><span class="lineNum">    1709 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT(state);</span></a>
+<a name="1710"><span class="lineNum">    1710 </span>            : </a>
+<a name="1711"><span class="lineNum">    1711 </span>            :   // update cached value</a>
+<a name="1712"><span class="lineNum">    1712 </span><span class="lineNoCov">          0 :   this-&gt;packetType = mode;</span></a>
+<a name="1713"><span class="lineNum">    1713 </span><span class="lineNoCov">          0 :   return(state);</span></a>
+<a name="1714"><span class="lineNum">    1714 </span>            : }</a>
+<a name="1715"><span class="lineNum">    1715 </span>            : </a>
+<a name="1716"><span class="lineNum">    1716 </span><span class="lineNoCov">          0 : int16_t SX128x::setHeaderType(uint8_t hdrType, size_t len) {</span></a>
+<a name="1717"><span class="lineNum">    1717 </span>            :   // check active modem</a>
+<a name="1718"><span class="lineNum">    1718 </span><span class="lineNoCov">          0 :   uint8_t modem = getPacketType();</span></a>
+<a name="1719"><span class="lineNum">    1719 </span><span class="lineNoCov">          0 :   if(!((modem == RADIOLIB_SX128X_PACKET_TYPE_LORA) || (modem == RADIOLIB_SX128X_PACKET_TYPE_RANGING))) {</span></a>
+<a name="1720"><span class="lineNum">    1720 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_WRONG_MODEM);</span></a>
+<a name="1721"><span class="lineNum">    1721 </span>            :   }</a>
+<a name="1722"><span class="lineNum">    1722 </span>            : </a>
+<a name="1723"><span class="lineNum">    1723 </span>            :   // update packet parameters</a>
+<a name="1724"><span class="lineNum">    1724 </span><span class="lineNoCov">          0 :   this-&gt;headerType = hdrType;</span></a>
+<a name="1725"><span class="lineNum">    1725 </span><span class="lineNoCov">          0 :   this-&gt;payloadLen = len;</span></a>
+<a name="1726"><span class="lineNum">    1726 </span><span class="lineNoCov">          0 :   return(setPacketParamsLoRa(this-&gt;preambleLengthLoRa, this-&gt;headerType, this-&gt;payloadLen, this-&gt;crcLoRa, this-&gt;invertIQEnabled));</span></a>
+<a name="1727"><span class="lineNum">    1727 </span>            : }</a>
+<a name="1728"><span class="lineNum">    1728 </span>            : </a>
+<a name="1729"><span class="lineNum">    1729 </span><span class="lineNoCov">          0 : int16_t SX128x::config(uint8_t modem) {</span></a>
+<a name="1730"><span class="lineNum">    1730 </span>            :   // reset buffer base address</a>
+<a name="1731"><span class="lineNum">    1731 </span><span class="lineNoCov">          0 :   int16_t state = setBufferBaseAddress();</span></a>
+<a name="1732"><span class="lineNum">    1732 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT(state);</span></a>
+<a name="1733"><span class="lineNum">    1733 </span>            : </a>
+<a name="1734"><span class="lineNum">    1734 </span>            :   // set modem</a>
+<a name="1735"><span class="lineNum">    1735 </span>            :   uint8_t data[1];</a>
+<a name="1736"><span class="lineNum">    1736 </span><span class="lineNoCov">          0 :   data[0] = modem;</span></a>
+<a name="1737"><span class="lineNum">    1737 </span><span class="lineNoCov">          0 :   state = this-&gt;mod-&gt;SPIwriteStream(RADIOLIB_SX128X_CMD_SET_PACKET_TYPE, data, 1);</span></a>
+<a name="1738"><span class="lineNum">    1738 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT(state);</span></a>
+<a name="1739"><span class="lineNum">    1739 </span>            : </a>
+<a name="1740"><span class="lineNum">    1740 </span>            :   // set CAD parameters</a>
+<a name="1741"><span class="lineNum">    1741 </span><span class="lineNoCov">          0 :   data[0] = RADIOLIB_SX128X_CAD_ON_8_SYMB;</span></a>
+<a name="1742"><span class="lineNum">    1742 </span><span class="lineNoCov">          0 :   state = this-&gt;mod-&gt;SPIwriteStream(RADIOLIB_SX128X_CMD_SET_CAD_PARAMS, data, 1);</span></a>
+<a name="1743"><span class="lineNum">    1743 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT(state);</span></a>
+<a name="1744"><span class="lineNum">    1744 </span>            : </a>
+<a name="1745"><span class="lineNum">    1745 </span>            :   // set regulator mode to DC-DC</a>
+<a name="1746"><span class="lineNum">    1746 </span><span class="lineNoCov">          0 :   data[0] = RADIOLIB_SX128X_REGULATOR_DC_DC;</span></a>
+<a name="1747"><span class="lineNum">    1747 </span><span class="lineNoCov">          0 :   state = this-&gt;mod-&gt;SPIwriteStream(RADIOLIB_SX128X_CMD_SET_REGULATOR_MODE, data, 1);</span></a>
+<a name="1748"><span class="lineNum">    1748 </span><span class="lineNoCov">          0 :   RADIOLIB_ASSERT(state);</span></a>
+<a name="1749"><span class="lineNum">    1749 </span>            : </a>
+<a name="1750"><span class="lineNum">    1750 </span><span class="lineNoCov">          0 :   return(RADIOLIB_ERR_NONE);</span></a>
+<a name="1751"><span class="lineNum">    1751 </span>            : }</a>
+<a name="1752"><span class="lineNum">    1752 </span>            : </a>
+<a name="1753"><span class="lineNum">    1753 </span><span class="lineNoCov">          0 : int16_t SX128x::SPIparseStatus(uint8_t in) {</span></a>
+<a name="1754"><span class="lineNum">    1754 </span><span class="lineNoCov">          0 :   if((in &amp; 0b00011100) == RADIOLIB_SX128X_STATUS_CMD_TIMEOUT) {</span></a>
+<a name="1755"><span class="lineNum">    1755 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_SPI_CMD_TIMEOUT);</span></a>
+<a name="1756"><span class="lineNum">    1756 </span><span class="lineNoCov">          0 :   } else if((in &amp; 0b00011100) == RADIOLIB_SX128X_STATUS_CMD_ERROR) {</span></a>
+<a name="1757"><span class="lineNum">    1757 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_SPI_CMD_INVALID);</span></a>
+<a name="1758"><span class="lineNum">    1758 </span><span class="lineNoCov">          0 :   } else if((in &amp; 0b00011100) == RADIOLIB_SX128X_STATUS_CMD_FAILED) {</span></a>
+<a name="1759"><span class="lineNum">    1759 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_SPI_CMD_FAILED);</span></a>
+<a name="1760"><span class="lineNum">    1760 </span><span class="lineNoCov">          0 :   } else if((in == 0x00) || (in == 0xFF)) {</span></a>
+<a name="1761"><span class="lineNum">    1761 </span><span class="lineNoCov">          0 :     return(RADIOLIB_ERR_CHIP_NOT_FOUND);</span></a>
+<a name="1762"><span class="lineNum">    1762 </span>            :   }</a>
+<a name="1763"><span class="lineNum">    1763 </span><span class="lineNoCov">          0 :   return(RADIOLIB_ERR_NONE);</span></a>
+<a name="1764"><span class="lineNum">    1764 </span>            : }</a>
+<a name="1765"><span class="lineNum">    1765 </span>            : </a>
+<a name="1766"><span class="lineNum">    1766 </span><span class="lineNoCov">          0 : bool SX128x::findChip(const char* verStr) {</span></a>
+<a name="1767"><span class="lineNum">    1767 </span><span class="lineNoCov">          0 :   uint8_t i = 0;</span></a>
+<a name="1768"><span class="lineNum">    1768 </span><span class="lineNoCov">          0 :   bool flagFound = false;</span></a>
+<a name="1769"><span class="lineNum">    1769 </span><span class="lineNoCov">          0 :   while((i &lt; 10) &amp;&amp; !flagFound) {</span></a>
+<a name="1770"><span class="lineNum">    1770 </span>            :     // reset the module</a>
+<a name="1771"><span class="lineNum">    1771 </span><span class="lineNoCov">          0 :     reset(true);</span></a>
+<a name="1772"><span class="lineNum">    1772 </span>            : </a>
+<a name="1773"><span class="lineNum">    1773 </span>            :     // read the version string</a>
+<a name="1774"><span class="lineNum">    1774 </span><span class="lineNoCov">          0 :     char version[16] = { 0 };</span></a>
+<a name="1775"><span class="lineNum">    1775 </span><span class="lineNoCov">          0 :     this-&gt;mod-&gt;SPIreadRegisterBurst(RADIOLIB_SX128X_REG_VERSION_STRING, 16, reinterpret_cast&lt;uint8_t*&gt;(version));</span></a>
+<a name="1776"><span class="lineNum">    1776 </span>            : </a>
+<a name="1777"><span class="lineNum">    1777 </span>            :     // check version register</a>
+<a name="1778"><span class="lineNum">    1778 </span><span class="lineNoCov">          0 :     if(strncmp(verStr, version, 6) == 0) {</span></a>
+<a name="1779"><span class="lineNum">    1779 </span>            :       RADIOLIB_DEBUG_BASIC_PRINTLN(&quot;Found SX128x: RADIOLIB_SX128X_REG_VERSION_STRING:&quot;);</a>
+<a name="1780"><span class="lineNum">    1780 </span>            :       RADIOLIB_DEBUG_BASIC_HEXDUMP(reinterpret_cast&lt;uint8_t*&gt;(version), 16, RADIOLIB_SX128X_REG_VERSION_STRING);</a>
+<a name="1781"><span class="lineNum">    1781 </span>            :       RADIOLIB_DEBUG_BASIC_PRINTLN();</a>
+<a name="1782"><span class="lineNum">    1782 </span><span class="lineNoCov">          0 :       flagFound = true;</span></a>
+<a name="1783"><span class="lineNum">    1783 </span>            :     } else {</a>
+<a name="1784"><span class="lineNum">    1784 </span>            :       #if RADIOLIB_DEBUG_BASIC</a>
+<a name="1785"><span class="lineNum">    1785 </span>            :         RADIOLIB_DEBUG_BASIC_PRINTLN(&quot;SX128x not found! (%d of 10 tries) RADIOLIB_SX128X_REG_VERSION_STRING:&quot;, i + 1);</a>
+<a name="1786"><span class="lineNum">    1786 </span>            :         RADIOLIB_DEBUG_BASIC_HEXDUMP(reinterpret_cast&lt;uint8_t*&gt;(version), 16, RADIOLIB_SX128X_REG_VERSION_STRING);</a>
+<a name="1787"><span class="lineNum">    1787 </span>            :         RADIOLIB_DEBUG_BASIC_PRINTLN(&quot;Expected string: %s&quot;, verStr);</a>
+<a name="1788"><span class="lineNum">    1788 </span>            :       #endif</a>
+<a name="1789"><span class="lineNum">    1789 </span><span class="lineNoCov">          0 :       this-&gt;mod-&gt;hal-&gt;delay(10);</span></a>
+<a name="1790"><span class="lineNum">    1790 </span><span class="lineNoCov">          0 :       i++;</span></a>
+<a name="1791"><span class="lineNum">    1791 </span>            :     }</a>
+<a name="1792"><span class="lineNum">    1792 </span>            :   }</a>
+<a name="1793"><span class="lineNum">    1793 </span>            : </a>
+<a name="1794"><span class="lineNum">    1794 </span><span class="lineNoCov">          0 :   return(flagFound);</span></a>
+<a name="1795"><span class="lineNum">    1795 </span>            : }</a>
+<a name="1796"><span class="lineNum">    1796 </span>            : </a>
+<a name="1797"><span class="lineNum">    1797 </span>            : #endif</a>
 </pre>
       </td>
     </tr>
