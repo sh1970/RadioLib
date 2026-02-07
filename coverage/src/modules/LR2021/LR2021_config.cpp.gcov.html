@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2026-02-06 19:46:05</td>
+            <td class="headerValue">2026-02-07 19:44:44</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">14</td>
@@ -449,7 +449,7 @@
 <a name="387"><span class="lineNum">     387 </span><span class="lineNoCov">          0 :     state = setGfskPacketParams(this-&gt;preambleLengthGFSK, this-&gt;preambleDetLength, false, false, this-&gt;addrComp, this-&gt;packetType, RADIOLIB_LR2021_MAX_PACKET_LENGTH, this-&gt;crcTypeGFSK, this-&gt;whitening);</span></a>
 <a name="388"><span class="lineNum">     388 </span><span class="lineNoCov">          0 :     RADIOLIB_ASSERT(state);</span></a>
 <a name="389"><span class="lineNum">     389 </span>            : </a>
-<a name="390"><span class="lineNum">     390 </span><span class="lineNoCov">          0 :     return(setGfskCrcParams(initial, polynomial));</span></a>
+<a name="390"><span class="lineNum">     390 </span><span class="lineNoCov">          0 :     return(setGfskCrcParams(polynomial, initial));</span></a>
 <a name="391"><span class="lineNum">     391 </span>            : </a>
 <a name="392"><span class="lineNum">     392 </span><span class="lineNoCov">          0 :   } else if(type == RADIOLIB_LR2021_PACKET_TYPE_OOK) {</span></a>
 <a name="393"><span class="lineNum">     393 </span><span class="lineNoCov">          0 :     if(len &gt; 4) {</span></a>
@@ -464,7 +464,7 @@
 <a name="402"><span class="lineNum">     402 </span><span class="lineNoCov">          0 :     state = setOokPacketParams(this-&gt;preambleLengthGFSK, this-&gt;addrComp, this-&gt;packetType, RADIOLIB_LR2021_MAX_PACKET_LENGTH, this-&gt;crcTypeGFSK, this-&gt;whitening);</span></a>
 <a name="403"><span class="lineNum">     403 </span><span class="lineNoCov">          0 :     RADIOLIB_ASSERT(state);</span></a>
 <a name="404"><span class="lineNum">     404 </span>            : </a>
-<a name="405"><span class="lineNum">     405 </span><span class="lineNoCov">          0 :     return(setOokCrcParams(initial, polynomial));</span></a>
+<a name="405"><span class="lineNum">     405 </span><span class="lineNoCov">          0 :     return(setOokCrcParams(polynomial, initial));</span></a>
 <a name="406"><span class="lineNum">     406 </span>            :   </a>
 <a name="407"><span class="lineNum">     407 </span><span class="lineNoCov">          0 :   } else if(type == RADIOLIB_LR2021_PACKET_TYPE_FLRC) {</span></a>
 <a name="408"><span class="lineNum">     408 </span><span class="lineNoCov">          0 :     if((len == 1) || (len &gt; 4)) {</span></a>
