@@ -178,8 +178,8 @@ void Module::SPItransfer(uint16_t cmd, uint32_t reg, const uint8_t* dataOut, uin
   // prepare the buffers
   size_t buffLen = this->spiConfig.widths[RADIOLIB_MODULE_SPI_WIDTH_CMD]/8 + this->spiConfig.widths[RADIOLIB_MODULE_SPI_WIDTH_ADDR]/8 + numBytes;
   #if RADIOLIB_STATIC_ONLY
-    uint8_t buffOut[RADIOLIB_STATIC_ARRAY_SIZE];
-    uint8_t buffIn[RADIOLIB_STATIC_ARRAY_SIZE];
+    uint8_t buffOut[RADIOLIB_STATIC_SPI_ARRAY_SIZE];
+    uint8_t buffIn[RADIOLIB_STATIC_SPI_ARRAY_SIZE];
   #else
     uint8_t* buffOut = new uint8_t[buffLen];
     uint8_t* buffIn = new uint8_t[buffLen];
@@ -323,7 +323,7 @@ int16_t Module::SPItransferStream(const uint8_t* cmd, uint8_t cmdLen, bool write
     buffLen += (this->spiConfig.widths[RADIOLIB_MODULE_SPI_WIDTH_STATUS] / 8);
   }
   #if RADIOLIB_STATIC_ONLY
-    uint8_t buffOut[RADIOLIB_STATIC_ARRAY_SIZE];
+    uint8_t buffOut[RADIOLIB_STATIC_SPI_ARRAY_SIZE];
   #else
     uint8_t* buffOut = new uint8_t[buffLen];
   #endif
@@ -366,7 +366,7 @@ int16_t Module::SPItransferStream(const uint8_t* cmd, uint8_t cmdLen, bool write
 
   // prepare the input buffer
   #if RADIOLIB_STATIC_ONLY
-    uint8_t buffIn[RADIOLIB_STATIC_ARRAY_SIZE];
+    uint8_t buffIn[RADIOLIB_STATIC_SPI_ARRAY_SIZE];
   #else
     uint8_t* buffIn = new uint8_t[buffLen];
   #endif

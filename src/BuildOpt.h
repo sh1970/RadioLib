@@ -106,6 +106,12 @@
   #define RADIOLIB_STATIC_ARRAY_SIZE   (256)
 #endif
 
+// allow user to set custom SPI buffer size
+// the default covers the maximum supported SPI command, address and status
+#if !defined(RADIOLIB_STATIC_SPI_ARRAY_SIZE)
+  #define RADIOLIB_STATIC_SPI_ARRAY_SIZE   (3*sizeof(uint32_t) + (RADIOLIB_STATIC_ARRAY_SIZE))
+#endif
+
 /*
  * Uncomment on boards whose clock runs too slow or too fast
  * Set the value according to the following scheme:
