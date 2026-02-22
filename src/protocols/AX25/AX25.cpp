@@ -307,7 +307,7 @@ int16_t AX25Client::sendFrame(AX25Frame* frame) {
   #if !RADIOLIB_STATIC_ONLY
     uint8_t* frameBuff = new uint8_t[frameBuffLen + 2];
   #else
-    uint8_t frameBuff[RADIOLIB_STATIC_ARRAY_SIZE];
+    uint8_t frameBuff[RADIOLIB_STATIC_ARRAY_SIZE + 2];
   #endif
   uint8_t* frameBuffPtr = frameBuff;
 
@@ -390,7 +390,7 @@ int16_t AX25Client::sendFrame(AX25Frame* frame) {
     // worst-case scenario: sequence of 1s, will have 120% of the original length, stuffed frame also includes both flags
     uint8_t* stuffedFrameBuff = new uint8_t[preambleLen + 1 + (6*frameBuffLen)/5 + 2];
   #else
-    uint8_t stuffedFrameBuff[RADIOLIB_STATIC_ARRAY_SIZE];
+    uint8_t stuffedFrameBuff[1 + (6*RADIOLIB_STATIC_ARRAY_SIZE)/5 + 2];
   #endif
 
   // initialize buffer to all zeros
