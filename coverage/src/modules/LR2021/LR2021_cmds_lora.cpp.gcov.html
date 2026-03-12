@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2026-03-08 19:46:12</td>
+            <td class="headerValue">2026-03-12 01:45:25</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -134,7 +134,7 @@
 <a name="72"><span class="lineNum">      72 </span><span class="lineNoCov">          0 :   return(state);</span></a>
 <a name="73"><span class="lineNum">      73 </span>            : }</a>
 <a name="74"><span class="lineNum">      74 </span>            : </a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineNoCov">          0 : int16_t LR2021::getLoRaPacketStatus(uint8_t* crc, uint8_t* cr, uint8_t* packetLen, float* snrPacket, float* rssiPacket, float* rssiSignalPacket) {</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineNoCov">          0 : int16_t LR2021::getLoRaPacketStatus(uint8_t* cr, bool* crc, uint8_t* packetLen, float* snrPacket, float* rssiPacket, float* rssiSignalPacket) {</span></a>
 <a name="76"><span class="lineNum">      76 </span><span class="lineNoCov">          0 :   uint8_t buff[6] = { 0 };</span></a>
 <a name="77"><span class="lineNum">      77 </span><span class="lineNoCov">          0 :   int16_t state = this-&gt;SPIcommand(RADIOLIB_LR2021_CMD_GET_LORA_PACKET_STATUS, false, buff, sizeof(buff));</span></a>
 <a name="78"><span class="lineNum">      78 </span>            :   uint16_t raw;</a>
