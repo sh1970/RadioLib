@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">23</td>
-            <td class="headerCovTableEntry">23</td>
+            <td class="headerCovTableEntry">24</td>
+            <td class="headerCovTableEntry">24</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2026-05-13 19:47:05</td>
+            <td class="headerValue">2026-05-14 01:46:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -110,40 +110,43 @@
 <a name="48"><span class="lineNum">      48 </span>            :   0xfc, 0x49, 0x74, 0x17, 0x79, 0x36, 0x3c, 0xfe</a>
 <a name="49"><span class="lineNum">      49 </span>            : };</a>
 <a name="50"><span class="lineNum">      50 </span>            : </a>
-<a name="51"><span class="lineNum">      51 </span>            : BOOST_FIXTURE_TEST_SUITE(suite_Crypto, ModuleFixture)</a>
+<a name="51"><span class="lineNum">      51 </span>            : static RadioLibSoftwareAES128 RadioLibAES128Instance;</a>
 <a name="52"><span class="lineNum">      52 </span>            : </a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">          2 : BOOST_FIXTURE_TEST_CASE(Crypto_CMAC, ModuleFixture) {</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          1 :   BOOST_TEST_MESSAGE(&quot;--- Test Crypto::CMAC ---&quot;);</span></a>
-<a name="55"><span class="lineNum">      55 </span>            :   uint8_t cmac[RADIOLIB_AES128_BLOCK_SIZE];</a>
-<a name="56"><span class="lineNum">      56 </span>            :   size_t testLen;</a>
-<a name="57"><span class="lineNum">      57 </span>            : </a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">          1 :   BOOST_TEST_MESSAGE(&quot;--- Test Crypto::CMAC RFC 4493 chapter 4 Example 1: len = 0 ---&quot;);</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          1 :   testLen = 0;</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;init(key);</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;generateCMAC(msg, testLen, cmac);</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">          1 :   BOOST_TEST(memcmp(cmac, testVectEx1, RADIOLIB_AES128_BLOCK_SIZE) == 0);</span></a>
-<a name="63"><span class="lineNum">      63 </span>            : </a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          1 :   BOOST_TEST_MESSAGE(&quot;--- Test Crypto::CMAC RFC 4493 chapter 4 Example 2: len = 16 ---&quot;);</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">          1 :   testLen = 16;</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;init(key);</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;generateCMAC(msg, testLen, cmac);</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">          1 :   BOOST_TEST(memcmp(cmac, testVectEx2, RADIOLIB_AES128_BLOCK_SIZE) == 0);</span></a>
-<a name="69"><span class="lineNum">      69 </span>            : </a>
-<a name="70"><span class="lineNum">      70 </span>            : </a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">          1 :   BOOST_TEST_MESSAGE(&quot;--- Test Crypto::CMAC RFC 4493 chapter 4 Example 2: len = 40 ---&quot;);</span></a>
-<a name="72"><span class="lineNum">      72 </span><span class="lineCov">          1 :   testLen = 40;</span></a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;init(key);</span></a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;generateCMAC(msg, testLen, cmac);</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">          1 :   BOOST_TEST(memcmp(cmac, testVectEx3, RADIOLIB_AES128_BLOCK_SIZE) == 0);</span></a>
-<a name="76"><span class="lineNum">      76 </span>            : </a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">          1 :   BOOST_TEST_MESSAGE(&quot;--- Test Crypto::CMAC RFC 4493 chapter 4 Example 2: len = 64 ---&quot;);</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">          1 :   testLen = 64;</span></a>
-<a name="79"><span class="lineNum">      79 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;init(key);</span></a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;generateCMAC(msg, testLen, cmac);</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">          1 :   BOOST_TEST(memcmp(cmac, testVectEx4, RADIOLIB_AES128_BLOCK_SIZE) == 0);</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          1 : }</span></a>
-<a name="83"><span class="lineNum">      83 </span>            : </a>
-<a name="84"><span class="lineNum">      84 </span>            : BOOST_AUTO_TEST_SUITE_END()</a>
+<a name="53"><span class="lineNum">      53 </span>            : BOOST_FIXTURE_TEST_SUITE(suite_Crypto, ModuleFixture)</a>
+<a name="54"><span class="lineNum">      54 </span>            : </a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">          2 : BOOST_FIXTURE_TEST_CASE(Crypto_CMAC, ModuleFixture) {</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">          1 :   BOOST_TEST_MESSAGE(&quot;--- Test Crypto::CMAC ---&quot;);</span></a>
+<a name="57"><span class="lineNum">      57 </span>            :   uint8_t cmac[RADIOLIB_AES128_BLOCK_SIZE];</a>
+<a name="58"><span class="lineNum">      58 </span>            :   size_t testLen;</a>
+<a name="59"><span class="lineNum">      59 </span>            : </a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">          1 :   BOOST_TEST_MESSAGE(&quot;--- Test Crypto::CMAC RFC 4493 chapter 4 Example 1: len = 0 ---&quot;);</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">          1 :   testLen = 0;</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">          1 :   hal-&gt;aes128 = &amp;RadioLibAES128Instance;</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;init(key);</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;generateCMAC(msg, testLen, cmac);</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">          1 :   BOOST_TEST(memcmp(cmac, testVectEx1, RADIOLIB_AES128_BLOCK_SIZE) == 0);</span></a>
+<a name="66"><span class="lineNum">      66 </span>            : </a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">          1 :   BOOST_TEST_MESSAGE(&quot;--- Test Crypto::CMAC RFC 4493 chapter 4 Example 2: len = 16 ---&quot;);</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">          1 :   testLen = 16;</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;init(key);</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;generateCMAC(msg, testLen, cmac);</span></a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineCov">          1 :   BOOST_TEST(memcmp(cmac, testVectEx2, RADIOLIB_AES128_BLOCK_SIZE) == 0);</span></a>
+<a name="72"><span class="lineNum">      72 </span>            : </a>
+<a name="73"><span class="lineNum">      73 </span>            : </a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">          1 :   BOOST_TEST_MESSAGE(&quot;--- Test Crypto::CMAC RFC 4493 chapter 4 Example 2: len = 40 ---&quot;);</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">          1 :   testLen = 40;</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;init(key);</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;generateCMAC(msg, testLen, cmac);</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">          1 :   BOOST_TEST(memcmp(cmac, testVectEx3, RADIOLIB_AES128_BLOCK_SIZE) == 0);</span></a>
+<a name="79"><span class="lineNum">      79 </span>            : </a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">          1 :   BOOST_TEST_MESSAGE(&quot;--- Test Crypto::CMAC RFC 4493 chapter 4 Example 2: len = 64 ---&quot;);</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">          1 :   testLen = 64;</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;init(key);</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">          1 :   hal-&gt;aes128-&gt;generateCMAC(msg, testLen, cmac);</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">          1 :   BOOST_TEST(memcmp(cmac, testVectEx4, RADIOLIB_AES128_BLOCK_SIZE) == 0);</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          1 : }</span></a>
+<a name="86"><span class="lineNum">      86 </span>            : </a>
+<a name="87"><span class="lineNum">      87 </span>            : BOOST_AUTO_TEST_SUITE_END()</a>
 </pre>
       </td>
     </tr>
