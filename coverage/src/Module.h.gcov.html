@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2026-07-11 19:45:54</td>
+            <td class="headerValue">2026-07-18 19:45:27</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -497,7 +497,7 @@
 <a name="435"><span class="lineNum">     435 </span>            : </a>
 <a name="436"><span class="lineNum">     436 </span>            : </a>
 <a name="437"><span class="lineNum">     437 </span>            :       \param pins A reference to an array of pins to control. This</a>
-<a name="438"><span class="lineNum">     438 </span>            :       should always be an array of 3 elements. If you need less pins,</a>
+<a name="438"><span class="lineNum">     438 </span>            :       should always be an array of 5 elements. If you need less pins,</a>
 <a name="439"><span class="lineNum">     439 </span>            :       use RADIOLIB_NC for the unused elements.</a>
 <a name="440"><span class="lineNum">     440 </span>            : </a>
 <a name="441"><span class="lineNum">     441 </span>            :       \param table A reference to an array of pin values to use for each</a>
@@ -532,7 +532,7 @@
 <a name="470"><span class="lineNum">     470 </span>            :       \code</a>
 <a name="471"><span class="lineNum">     471 </span>            :       // In global scope, define the pin array and mode table</a>
 <a name="472"><span class="lineNum">     472 </span>            :       static const uint32_t rfswitch_pins[] =</a>
-<a name="473"><span class="lineNum">     473 </span>            :                              {PA0,  PA1,  RADIOLIB_NC};</a>
+<a name="473"><span class="lineNum">     473 </span>            :                              {PA0,  PA1,  RADIOLIB_NC, RADIOLIB_NC, RADIOLIB_NC};</a>
 <a name="474"><span class="lineNum">     474 </span>            :       static const Module::RfSwitchMode_t rfswitch_table[] = {</a>
 <a name="475"><span class="lineNum">     475 </span>            :         {Module::MODE_IDLE,  {LOW,  LOW}},</a>
 <a name="476"><span class="lineNum">     476 </span>            :         {Module::MODE_RX,    {HIGH, LOW}},</a>
